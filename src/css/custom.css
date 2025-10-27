@@ -1,24 +1,73 @@
-/* You can override the default Infima variables here. */
-:root {
-  --ifm-color-primary: #000000;
-  --ifm-color-primary-dark: #1a1a1a;
-  --ifm-color-primary-darker: #141414;
-  --ifm-color-primary-darkest: #0f0f0f;
-  --ifm-color-primary-light: #262626;
-  --ifm-color-primary-lighter: #2e2e2e;
-  --ifm-color-primary-lightest: #383838;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
+/*
+ * Custom styles for the Copay documentation site.
+ *
+ * The default Docusaurus theme uses a light grey footer.  For the Copay
+ * project we want a minimalistic look that matches the black and white
+ * colour palette used throughout the brand.  We override a handful of
+ * Infima variables on the `.footer` class to ensure the footer renders
+ * with a black background, white text and links, and reduced padding to
+ * make it occupy only a single line.  Because Docusaurus scops many
+ * variables on specific classes rather than globally, we target the
+ * `.footer` class directly instead of setting values on `:root` (see
+ * Docusaurus CSS variable documentation【208785984513060†L120-L148】).
+ */
+
+/* Footer customizations */
+.footer {
+  /* Background colour: solid black */
+  --ifm-footer-background-color: #000000;
+  /* Base text colour: white */
+  --ifm-footer-color: #ffffff;
+  /* Link colours: white for normal state and a lighter grey on hover */
+  --ifm-footer-link-color: #ffffff;
+  --ifm-footer-link-hover-color: #cccccc;
+  /* Reduce padding so the footer occupies a single line */
+  --ifm-footer-padding-vertical: 0.5rem;
+  --ifm-footer-padding-horizontal: 1rem;
+  /* Reduce spacing below group titles (not used in our minimalist footer) */
+  --ifm-footer-title-margin-bottom: 0.25rem;
+  /* Slightly smaller font size for the footer */
+  font-size: 0.9rem;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #444444;
-  --ifm-color-primary-dark: #3c3c3c;
-  --ifm-color-primary-darker: #363636;
-  --ifm-color-primary-darkest: #2e2e2e;
-  --ifm-color-primary-light: #4c4c4c;
-  --ifm-color-primary-lighter: #545454;
-  --ifm-color-primary-lightest: #5c5c5c;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+/* Ensure anchor tags inside the footer use the specified link colour */
+.footer a {
+  color: var(--ifm-footer-link-color);
+}
+
+/*
+ * Fill empty space on pages with a subtle gradient.
+ * This gradient transitions from pure white at the top to a very light grey at
+ * the bottom.  It adds visual interest to the blank areas surrounding the
+ * minimalistic content while remaining unobtrusive and compatible with the
+ * black/white palette.
+ */
+body {
+  background: linear-gradient(to bottom, #ffffff 0%, #f7f7f7 100%);
+}
+
+/* Use a darker gradient in dark mode. This ensures the background remains
+ * subtle but consistent with the dark theme palette. */
+html[data-theme='dark'] body {
+  background: linear-gradient(to bottom, #1a1a1a 0%, #000000 100%);
+}
+
+/* Copay button styling: black in light mode, white in dark mode */
+
+/*
+ * The `.button--secondary` class of Infima sets its own text color, which can
+ * override our custom colours.  To ensure our styles always prevail, we
+ * append `!important` to the properties that might be overridden.  This
+ * guarantees that the button appearance matches our black/white palette.
+ */
+.copay-btn {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #000000 !important;
+}
+
+html[data-theme='dark'] .copay-btn {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #ffffff !important;
 }

@@ -64,7 +64,8 @@ const config = {
           onUntruncatedBlogPosts: 'warn',
         },
         theme: {
-          customCss: './src/css/custom.css',
+          // Import our custom CSS using require.resolve so Node can resolve the path.
+          customCss: require.resolve('./src/css/custom.css'),
         },
       }),
     ],
@@ -73,7 +74,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-
       navbar: {
         title: 'Copay',
         logo: {
@@ -82,76 +82,21 @@ const config = {
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Documents',
-          },
-          {to: '/blog', label: 'Roadmap', position: 'left'},
-          {
-            href: 'https://github.com/poksyy/copay-app-backend',
-            label: 'GitHub Backend',
+            label: 'GitHub',
             position: 'right',
-          },
-          {
-            href: 'https://github.com/poksyy/copay-app-frontend',
-            label: 'GitHub Frontend',
-            position: 'right',
+            items: [
+              { label: 'Backend', href: 'https://github.com/poksyy/copay-app-backend' },
+              { label: 'Frontend', href: 'https://github.com/poksyy/copay-app-frontend' },
+              { label: 'Docs', href: 'https://github.com/poksyy/copay-app-documents' },
+            ],
           },
         ],
       },
       footer: {
         style: 'dark',
-        links: [
-          {
-            title: 'General',
-            items: [
-              {
-                label: 'Documents',
-                to: '/docs/info',
-              },
-              {
-                label: 'Roadmap',
-                to: '/blog',
-              },
-            ],
-          },
-          {
-            title: 'Github Repositories',
-            items: [
-              {
-                label: 'Backend',
-                href: 'https://github.com/poksyy/copay-app-backend',
-              },
-              {
-                label: 'Frontend',
-                href: 'https://github.com/poksyy/copay-app-frontend',
-              },
-              {
-                label: 'Documents',
-                href: 'https://github.com/poksyy/copay-app-documents',
-              },
-            ],
-          },
-          {
-            title: 'Developers',
-            items: [
-              {
-                label: 'Pau Carrera',
-                href: 'https://www.linkedin.com/in/pau-carrera/',
-              },
-              {
-                label: 'Dylan Navarro',
-                href: 'https://www.linkedin.com/in/dylan-navarro-vinyarta/',
-              },
-              {
-                label: 'Cristian Oraña',
-                href: 'https://www.linkedin.com/in/orana-cristian/',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        links: [],
+        // Use a single-line footer with developer names and a tagline
+        copyright: 'Copay since 2024 — Pau Carrera | Dylan Navarro | Cristian Oraña',
       },
       prism: {
         theme: prismThemes.github,
