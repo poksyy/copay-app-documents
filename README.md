@@ -4,7 +4,9 @@ This website is built using [Docusaurus](https://docusaurus.io/), a modern stati
 
 ### Installation
 
-```
+If you don't have Yarn installed yet, please install it first. Windows users can follow this guide for installing Yarn: [https://phoenixnap.com/kb/yarn-windows](https://phoenixnap.com/kb/yarn-windows).
+
+```bash
 $ yarn
 ```
 
